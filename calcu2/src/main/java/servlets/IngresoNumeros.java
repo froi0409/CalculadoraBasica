@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import calculos.*;
 
 /**
  *
@@ -37,7 +38,7 @@ public class IngresoNumeros extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IngresoNumeros</title>");            
+            out.println("<title>Resultado</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("</body>");
@@ -74,7 +75,18 @@ public class IngresoNumeros extends HttpServlet {
             throws ServletException, IOException {
         
         PrintWriter out = response.getWriter();
-        out.println("hola: " + request.getParameter("n1"));
+        int nu1 = Integer.parseInt(request.getParameter("n1"));
+        int nu2 = Integer.parseInt(request.getParameter("n2"));
+        
+        Calculo cl = new Calculo(nu1, nu2);
+        
+        out.println("<h1>RESULTADOS:</h1><br>");
+        out.println("<h2>Numero 1: " + nu1 + "    Numero2: " + nu2 + "</h2>");
+        out.println("<br>Suma: " + cl.suma());
+        out.println("<br>Multiplicación: " + cl.multiplicacion());
+        out.println("<br>Mayor: " + cl.mayor());
+        out.println("<br>Potencia: " + cl.potencia());
+        out.println("<br>Binarios: " + cl.mostrarBinario());
         
         processRequest(request, response);
     }
